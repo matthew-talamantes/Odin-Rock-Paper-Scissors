@@ -33,16 +33,20 @@ const playRound = (playerSelection, computerSelection) => {
         }
     }
 
+    let result;
+
     if (outcome === 'win') {
-        const result = `You Win! ${playerSelection} beats ${computerSelection}`;
+        result = `You Win! ${playerSelection} beats ${computerSelection}`;
     } else if (outcome === 'lose') {
-        const result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
     } else {
-        const result = `Draw! You both selected ${playerSelection}`;
+        result = `Draw! You both selected ${playerSelection}`;
     }
 
     return result;
 };
 
 const playOptions = ['rock', 'paper', 'scissors'];
-const playerSelection = 'paper';
+const playerSelection = 'paPer';
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
