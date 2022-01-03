@@ -33,20 +33,41 @@ const playRound = (playerSelection, computerSelection) => {
         }
     }
 
-    let result;
+    return outcome;
+};
 
-    if (outcome === 'win') {
-        result = `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else if (outcome === 'lose') {
-        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
-    } else {
-        result = `Draw! You both selected ${playerSelection}`;
+const game = () => {
+    const rounds = 5;
+    let playerScore = 0;
+    let computerScore = 0;
+    let draws = 0;
+    let playCount = 0;
+    let playerSelection;
+    let gameOutcome;
+
+    while (playCount < rounds) {
+        playerSelection = window.prompt('Enter rock, paper, or scissors: ');
+        gameOutcome = playRound(playerSelection, computerPlay());
+
+        if (gameOutcome === 'lose') {
+            computerScore++;
+        } else if (gameOutcome === 'win') {
+            playerScore++;
+        } else {
+            draws++;
+            continue;
+        }
+
+        playCount++;
     }
 
-    return result;
+    if (playerScore > computerScore) {
+        console.log(`You won with ${playerScore} wins to ${computerScore} and ${draws} draws`);
+    } else if (computerScore > playerScore) {
+        console.log(`You lose ${computerScore} to ${playerScore} with ${draws} draws`);
+    }
 };
 
 const playOptions = ['rock', 'paper', 'scissors'];
 const playerSelection = 'paPer';
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+game();
